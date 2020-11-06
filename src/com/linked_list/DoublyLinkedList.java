@@ -136,6 +136,10 @@ public class DoublyLinkedList {
 
     }
 
+    public void removeAt(int index){
+
+    }
+
     public int indexOf(int item) {
         int index = 0;
         var current = first;
