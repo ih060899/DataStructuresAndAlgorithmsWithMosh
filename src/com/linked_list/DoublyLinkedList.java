@@ -2,23 +2,23 @@ package com.linked_list;
 
 import java.util.NoSuchElementException;
 
-public class DoublyLinkedList {
-    private class Node {
-        private int value;
+public class DoublyLinkedList<E> {
+    private class Node<E> {
+        private E value;
         private Node previous;
         private Node next;
 
-        public Node(int value) {
+        public Node(E value) {
             this.value = value;
         }
     }
 
-    private Node first;
-    private Node last;
+    private Node<E> first;
+    private Node<E> last;
     private int size = 0;
 
-    public void addLast(int item) {
-        var node = new Node(item);
+    public void addLast(E item) {
+        var node = new Node<>(item);
         if (isEmpty()) {
             first = last = node;
             size++;
@@ -30,8 +30,8 @@ public class DoublyLinkedList {
         }
     }
 
-    public void addFirst(int item) {
-        var node = new Node(item);
+    public void addFirst(E item) {
+        var node = new Node<>(item);
         if (isEmpty()) {
             first = last = node;
             size++;
@@ -43,7 +43,7 @@ public class DoublyLinkedList {
         }
     }
 
-    public void addAt(int index, int item) {
+    public void addAt(int index, E item) {
         if (index > size)
             throw new IndexOutOfBoundsException();
         if (index == 0)
@@ -51,7 +51,7 @@ public class DoublyLinkedList {
         else if (index == size)
             addLast(item);
         else {
-            var node = new Node(item);
+            var node = new Node<>(item);
             int newIndex = 0;
             var current = first;
             while (current != null) {
@@ -105,7 +105,7 @@ public class DoublyLinkedList {
 
     }
 
-    public void remove(int item) {
+    public void remove(E item) {
         if (isEmpty())
             throw new NoSuchElementException();
 
@@ -140,7 +140,7 @@ public class DoublyLinkedList {
 
     }
 
-    public int indexOf(int item) {
+    public int indexOf(E item) {
         int index = 0;
         var current = first;
         while (current != null) {
@@ -152,7 +152,7 @@ public class DoublyLinkedList {
 
     }
 
-    public boolean contain(int item) {
+    public boolean contain(E item) {
         return indexOf(item) != -1;
     }
 

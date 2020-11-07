@@ -2,22 +2,22 @@ package com.linked_list;
 
 import java.util.NoSuchElementException;
 
-public class SinglyLinkedList {
-    private class Node {
-        private int value;
+public class SinglyLinkedList<E> {
+    private class Node<E> {
+        private E value;
         private Node next;
 
-        public Node(int value) {
+        public Node(E value) {
             this.value = value;
         }
     }
 
-    private Node first;
-    private Node last;
+    private Node<E> first;
+    private Node<E> last;
     private int size = 0;
 
-    public void addLast(int item) {
-        var node = new Node(item);
+    public void addLast(E item) {
+        var node = new Node<>(item);
         if (isEmpty()) {
             first = last = node;
             size++;
@@ -28,16 +28,16 @@ public class SinglyLinkedList {
         }
     }
 
-    public void addAt(int index, int item) {
-        if(index > size)
+    public void addAt(int index, E item) {
+        if (index > size)
             throw new IndexOutOfBoundsException();
-        if(index == 0)
+        if (index == 0)
             addFirst(item);
-        else if(index == size)
+        else if (index == size)
             addLast(item);
-        else{
+        else {
             var node = new Node(item);
-            int newIndex=0;
+            int newIndex = 0;
             var current = first;
             while (current != null) {
                 if (newIndex == index) break;
@@ -49,7 +49,7 @@ public class SinglyLinkedList {
 
 
             var previous = getPrevious(current);
-            previous.next =node;
+            previous.next = node;
             node.next = current;
             size++;
 
@@ -58,8 +58,8 @@ public class SinglyLinkedList {
 
     }
 
-    public void addFirst(int item) {
-        var node = new Node(item);
+    public void addFirst(E item) {
+        var node = new Node<>(item);
         if (isEmpty()) {
             first = last = node;
             size++;
@@ -74,7 +74,7 @@ public class SinglyLinkedList {
         return first == null;
     }
 
-    public int indexOf(int item) {
+    public int indexOf(E item) {
         int index = 0;
         var current = first;
         while (current != null) {
@@ -86,7 +86,7 @@ public class SinglyLinkedList {
 
     }
 
-    public boolean contain(int item) {
+    public boolean contain(E item) {
         return indexOf(item) != -1;
     }
 
@@ -120,7 +120,7 @@ public class SinglyLinkedList {
 
     }
 
-    public void remove(int item) {
+    public void remove(E item) {
         if (isEmpty())
             throw new NoSuchElementException();
 
@@ -136,7 +136,7 @@ public class SinglyLinkedList {
 
 
             }
-            if (current==null)
+            if (current == null)
                 throw new NoSuchElementException();
 
             var previous = getPrevious(current);
