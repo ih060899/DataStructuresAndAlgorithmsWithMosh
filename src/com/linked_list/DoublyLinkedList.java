@@ -121,7 +121,7 @@ public class DoublyLinkedList<E> {
 
 
             }
-            if (current==null)
+            if (current == null)
                 throw new NoSuchElementException();
 
             var p = current.previous;
@@ -136,7 +136,7 @@ public class DoublyLinkedList<E> {
 
     }
 
-    public void removeAt(int index){
+    public void removeAt(int index) {
 
     }
 
@@ -157,9 +157,37 @@ public class DoublyLinkedList<E> {
     }
 
 
-
-    private boolean isEmpty(){
+    private boolean isEmpty() {
         return size == 0;
+    }
+
+    /*public DoublyLinkedList<E> reverse() {
+        DoublyLinkedList<E> list = new DoublyLinkedList<>();
+        var current = last;
+        while (current.previous != null) {
+            list.addLast(current.value);
+            current = current.previous;
+        }
+        list.addLast(current.value);
+        return list;
+    }*/
+    public void reverse() {
+        var current = last;
+        while (current.previous != null) {
+            var temp = current.previous;
+            current.previous = current.next;
+            current.next = temp;
+
+            current = temp;
+
+        }
+        var temp = current.previous;
+        current.previous = current.next;
+        current.next = temp;
+        var temp1 = last;
+        last = first;
+        first = temp1;
+
     }
 
     public void print() {
